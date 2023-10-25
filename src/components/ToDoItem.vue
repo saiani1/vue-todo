@@ -4,8 +4,12 @@ defineProps<{
   checked: Boolean
 }>()
 
+const emits = defineEmits(['delItem'])
+
 const handleClickDelBtn = (e: MouseEvent) => {
   const target = e.target as HTMLButtonElement
+  const id = target.name
+  emits('delItem', id)
 }
 </script>
 

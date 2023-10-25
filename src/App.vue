@@ -4,6 +4,12 @@ import ToDoItem from './components/ToDoItem.vue'
 import { todoData } from './assets/data/todoData'
 
 const todoDataArr = ref(todoData)
+
+const delItem = (id: string) => {
+  todoDataArr.value = todoDataArr.value.filter((item) => {
+    return item.content !== id
+  })
+}
 </script>
 
 <template>
@@ -20,6 +26,7 @@ const todoDataArr = ref(todoData)
           :key="id"
           :content="content"
           :checked="checked"
+          @delItem="delItem"
         />
       </div>
     </div>
