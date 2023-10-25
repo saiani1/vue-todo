@@ -4,11 +4,21 @@ import ToDoItem from './components/ToDoItem.vue'
 import { todoData } from './assets/data/todoData'
 
 const todoDataArr = ref(todoData)
+const insertTodo = ref('')
 
 const delItem = (id: string) => {
   todoDataArr.value = todoDataArr.value.filter((item) => {
     return item.content !== id
   })
+}
+
+const onSubmit = () => {
+  todoDataArr.value.unshift({
+    content: insertTodo.value,
+    id: todoDataArr.value.length + 1,
+    checked: false
+  })
+  insertTodo.value = ''
 }
 </script>
 
@@ -16,10 +26,12 @@ const delItem = (id: string) => {
   <header class="header">TO DO LIST</header>
   <section>
     <div class="todoWrap">
-      <div class="inputWrap">
-        <input type="text" id="textinput" placeholder="Insert your To do" />
-        <button type="button" class="submitBtn"><span>입력</span></button>
-      </div>
+      <form class="inputWrap" @submit.prevent="onSubmit">
+        <input type="text" id="textinput" placeholder="Insert your To do" v-model="insertTodo" />
+        <button type="submit" class="submitBtn">
+          <span>입력</span>
+        </button>
+      </form>
       <div class="todoListWrap">
         <ToDoItem
           v-for="{ id, content, checked } in todoDataArr"

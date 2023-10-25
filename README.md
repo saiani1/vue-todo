@@ -1,10 +1,11 @@
 # vue-todo
 
 vue기능 익히기용 todo list만들기
+![Alt text](image.png)
 
 ## 1. 기능
 
-- [ ] C
+- [x] C
 - [x] R
-- [ ] U
+- [x] U
 - [x] D
